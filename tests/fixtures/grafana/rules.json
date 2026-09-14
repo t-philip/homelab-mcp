@@ -1,0 +1,29 @@
+{
+  "status": "success",
+  "data": {
+    "groups": [
+      {
+        "name": "test-group",
+        "file": "Test Folder",
+        "rules": [
+          {
+            "name": "Test High CPU",
+            "state": "firing",
+            "health": "ok",
+            "lastEvaluation": "1999-06-07T08:15:00Z",
+            "alerts": [
+              { "state": "Alerting", "labels": { "host": "node-a" }, "value": "0.97" }
+            ]
+          },
+          {
+            "name": "Test Disk Space",
+            "state": "normal",
+            "health": "ok",
+            "lastEvaluation": "1999-06-07T08:15:00Z",
+            "alerts": []
+          }
+        ]
+      }
+    ]
+  }
+}

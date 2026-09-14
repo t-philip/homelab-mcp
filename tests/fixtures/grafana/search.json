@@ -1,0 +1,17 @@
+[
+  {
+    "uid": "aaa111",
+    "title": "Test Overview",
+    "url": "/d/aaa111/test-overview",
+    "folderTitle": "Test Folder",
+    "tags": ["test", "overview"],
+    "type": "dash-db"
+  },
+  {
+    "uid": "bbb222",
+    "title": "Test Network",
+    "url": "/d/bbb222/test-network",
+    "tags": [],
+    "type": "dash-db"
+  }
+]

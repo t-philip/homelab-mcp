@@ -1,0 +1,15 @@
+{
+  "data": {
+    "vmid": 201,
+    "name": "test-web-01",
+    "status": "running",
+    "cpu": 0.0180,
+    "cpus": 2,
+    "maxcpu": 2,
+    "mem": 279969792,
+    "maxmem": 1073741824,
+    "maxdisk": 10737418240,
+    "uptime": 54400,
+    "ha": { "managed": 1 }
+  }
+}

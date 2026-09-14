@@ -1,0 +1,111 @@
+# homelab-mcp configuration — copy to homelab-mcp.toml and edit.
+#
+# Secrets are NEVER written here. A field ending in `_env` names an environment
+# variable; the value is read from the process environment at startup. An
+# enabled adapter with a missing endpoint or a missing secret variable is a
+# fatal error — the server will not start half-configured.
+
+[server]
+# "stdio" (default) needs no network port — the MCP client spawns this server
+# as a subprocess. Use "streamable-http" (or "sse") when the client runs on a
+# different host; then bind to a LAN/VPN address only, never a public one.
+transport = "stdio"
+cache_ttl_seconds = 15
+
+# host / port / http_path apply only to the "streamable-http" and "sse"
+# transports. 127.0.0.1 is a deliberately safe default — set host to a LAN
+# address to expose it, and put it behind your VPN. A 0.0.0.0 / :: bind logs
+# a loud warning.
+host = "127.0.0.1"
+port = 8000
+http_path = "/mcp"
+
+# DEBUG | INFO | WARNING | ERROR | CRITICAL. Logs go to stderr. Override with
+# --log-level.
+log_level = "INFO"
+
+# HTTP transports only. The MCP SDK rejects any request whose Host header is not
+# on this list (DNS-rebinding guard). Empty -> localhost + the configured host
+# (with and without :port). Set it when a client connects by LAN name/IP.
+# allowed_hosts = ["mcp.example.invalid", "192.0.2.10:9000"]
+# allowed_origins = []   # only needed for browser-based MCP clients
+
+# --- Proxmox VE -----------------------------------------------------------
+# Create a token with only the audit roles: Sys.Audit, VM.Audit, Datastore.Audit.
+[adapters.proxmox]
+enabled = false
+base_url = "https://pve.example.invalid:8006"
+token_id_env = "PROXMOX_TOKEN_ID"          # e.g. "homelab-mcp@pve!readonly"
+token_secret_env = "PROXMOX_TOKEN_SECRET"
+verify_tls = true
+
+# --- NetBox -------------------------------------------------------------
+[adapters.netbox]
+enabled = false
+base_url = "https://netbox.example.invalid"
+token_env = "NETBOX_TOKEN"                  # a read-only API token is enough
+verify_tls = true
+
+# --- systemd over SSH --------------------------------------------------
+# Runs a fixed set of read-only commands (systemctl show / --failed,
+# journalctl) over SSH. Use a dedicated unprivileged key; hosts must appear
+# in this allowlist or the tool call is rejected.
+[adapters.systemd]
+enabled = false
+hosts = ["node-a", "node-b"]
+ssh_user = "readonly"
+ssh_options = ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8"]
+command_timeout_seconds = 20     # a hung remote command is killed after this
+
+# --- Grafana ---------------------------------------------------------
+# A Viewer-role service-account token is enough. -> Authorization: Bearer <token>
+[adapters.grafana]
+enabled = false
+base_url = "https://grafana.example.invalid"
+token_env = "GRAFANA_TOKEN"
+verify_tls = true
+
+# --- InfluxDB v2 ---------------------------------------------------
+# Read-only token. The model never supplies raw Flux — every query is built
+# from validated bucket / measurement / field / tag parts.
+[adapters.influxdb]
+enabled = false
+base_url = "https://influxdb.example.invalid:8086"
+org = "example-org"
+token_env = "INFLUXDB_TOKEN"
+verify_tls = true
+
+# --- AdGuard Home (or Pi-hole-compatible) ------------------------
+[adapters.adguard]
+enabled = false
+base_url = "https://adguard.example.invalid"
+username_env = "ADGUARD_USER"
+password_env = "ADGUARD_PASSWORD"
+verify_tls = true
+
+# --- ping / uptime log --------------------------------------------
+# Reads a local availability log (CSV with a header, or JSONL). Column names
+# are configurable so it fits whatever your monitor writes. Only the last
+# `max_bytes` of the file is read.
+[adapters.pinglog]
+enabled = false
+path = "/var/log/ping-monitor.csv"
+format = "csv"                 # or "jsonl"
+time_column = "timestamp"
+target_column = "target"
+success_column = "success"     # truthy/falsy; or use rtt_column
+rtt_column = "rtt_ms"
+max_bytes = 5242880
+timezone = "UTC"              # IANA name; how to read naive timestamps
+
+# --- generic HTTP-JSON endpoints --------------------------------
+# The model can only call an endpoint you name here — it cannot supply a URL.
+[adapters.http_json]
+enabled = false
+
+  [adapters.http_json.endpoints.example_health]
+  url = "https://service.example.invalid/api/health"
+  headers = { Accept = "application/json" }
+  # token_env = "EXAMPLE_TOKEN"   # -> Authorization: Bearer <value>
+  extract = "status"              # optional dotted path into the JSON, e.g. "a.b.0.c"
+  verify_tls = true

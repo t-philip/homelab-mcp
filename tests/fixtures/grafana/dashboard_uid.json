@@ -1,0 +1,13 @@
+{
+  "meta": { "folderTitle": "Test Folder", "type": "db" },
+  "dashboard": {
+    "uid": "aaa111",
+    "title": "Test Overview",
+    "tags": ["test", "overview"],
+    "panels": [
+      { "id": 1, "title": "CPU", "type": "timeseries" },
+      { "id": 2, "title": "Memory", "type": "timeseries" },
+      { "id": 3, "type": "row" }
+    ]
+  }
+}

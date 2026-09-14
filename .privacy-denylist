@@ -1,0 +1,17 @@
+# Repo-specific privacy patterns for homelab-mcp, one extended-regex per line.
+# The shared scripts/check_privacy.sh already covers internal host names, real
+# IPs, emails and dated prose. These add what is specific to this repo: a
+# config/tool server that talks to real infrastructure, so the danger is a
+# real endpoint URL or SSH alias slipping into an example or a fixture.
+#
+# All examples and fixtures must use .invalid / .example hostnames and the
+# RFC 5737 documentation IP ranges only.
+
+# Real SSH aliases / host shortnames from the author's environment.
+\b(pve-g3|ct-20[0-9]|ct-21[0-9]|ct-212|nanopi|ai-host|ha-green)\b
+
+# Internal DNS suffixes.
+\.lan\b|\.local\b|\.home\b|\.internal\b
+
+# Real endpoint hints — a non-.invalid grafana/netbox/influx/proxmox URL.
+https?://[a-z0-9.-]*\.(?!invalid|example)[a-z]{2,}[:/][^ "']*\b(grafana|netbox|influx|pve|proxmox|adguard)

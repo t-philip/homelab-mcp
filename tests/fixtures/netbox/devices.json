@@ -1,0 +1,41 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 11,
+      "url": "https://netbox.example.invalid/api/dcim/devices/11/",
+      "name": "test-switch-01",
+      "display": "test-switch-01",
+      "status": { "value": "active", "label": "Active" },
+      "role": { "name": "Access Switch", "slug": "access-switch" },
+      "device_type": {
+        "model": "Example Switch 24",
+        "slug": "example-switch-24",
+        "manufacturer": { "name": "Example Networks" }
+      },
+      "site": { "name": "Test Site", "slug": "test-site" },
+      "primary_ip4": { "address": "192.0.2.11/24" },
+      "primary_ip6": null,
+      "serial": "TESTDATA0001"
+    },
+    {
+      "id": 12,
+      "url": "https://netbox.example.invalid/api/dcim/devices/12/",
+      "name": "test-server-01",
+      "display": "test-server-01",
+      "status": { "value": "active", "label": "Active" },
+      "role": { "name": "Server", "slug": "server" },
+      "device_type": {
+        "model": "Example Server R1",
+        "slug": "example-server-r1",
+        "manufacturer": { "name": "Example Compute" }
+      },
+      "site": { "name": "Test Site", "slug": "test-site" },
+      "primary_ip4": { "address": "192.0.2.12/24" },
+      "primary_ip6": null,
+      "serial": "TESTDATA0002"
+    }
+  ]
+}

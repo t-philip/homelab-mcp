@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: uv sync --all-extras --dev
+      - name: ruff (lint)
+        run: uv run ruff check .
+      - name: ruff (format)
+        run: uv run ruff format --check .
+      - name: mypy
+        run: uv run mypy
+      - name: read-only tool guarantee
+        run: uv run python scripts/check_no_write_tools.py
+      - name: vendored secret_redaction.py pin
+        run: uv run python scripts/check_vendored.py
+      - name: pytest
+        run: uv run pytest -q

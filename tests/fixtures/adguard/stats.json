@@ -1,0 +1,21 @@
+{
+  "num_dns_queries": 12000,
+  "num_blocked_filtering": 3400,
+  "num_replaced_safebrowsing": 5,
+  "num_replaced_parental": 0,
+  "avg_processing_time": 0.0125,
+  "time_units": "hours",
+  "top_clients": [
+    { "192.0.2.10": 4200 },
+    { "192.0.2.11": 3100 },
+    { "192.0.2.12": 900 }
+  ],
+  "top_queried_domains": [
+    { "test-telemetry.example.invalid": 1800 },
+    { "test-cdn.example.invalid": 1200 }
+  ],
+  "top_blocked_domains": [
+    { "test-ads.example.invalid": 1500 },
+    { "test-tracker.example.invalid": 700 }
+  ]
+}

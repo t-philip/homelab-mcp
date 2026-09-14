@@ -1,0 +1,19 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 55,
+      "address": "192.0.2.12/24",
+      "status": { "value": "active", "label": "Active" },
+      "dns_name": "test-server-01.example.invalid",
+      "assigned_object_type": "dcim.interface",
+      "assigned_object": {
+        "display": "eth0",
+        "name": "eth0",
+        "device": { "name": "test-server-01" }
+      }
+    }
+  ]
+}
