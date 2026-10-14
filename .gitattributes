@@ -2,3 +2,5 @@
 * text=auto eol=lf
 *.png binary
 *.jpg binary
+*.sh text eol=lf
+.githooks/* text eol=lf
