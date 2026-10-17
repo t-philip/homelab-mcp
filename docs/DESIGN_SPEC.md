@@ -1,7 +1,7 @@
 # homelab-mcp — Design Specification
 
-**Status:** alpha — all eight initial adapters (28 read-only tools), not yet published.
-**Last reconciled to code:** 2026-09-01.
+**Status:** v1.0.0 — all eight initial adapters (28 read-only tools).
+**Last reconciled to code:** v1.0.0.
 
 This document explains how homelab-mcp is built and why. It is kept honest
 against the code: where the build does not yet match the intent, §0.1 says so.
@@ -15,11 +15,11 @@ small set of typed, documented tools — so an assistant can answer *"is that
 container up?"* or *"which VMs are heaviest on memory?"* with one tool call
 instead of a reconstructed shell pipeline.
 
-homelab-mcp is the query half of a two-part system. A separate assistant/bot
-consumes this server (among possibly others). This repo is **only** the server,
+homelab-mcp is a standalone server. Any MCP client (an assistant, a bot, an IDE)
+can consume it. This repo is **only** the server,
 and it is **only** read-only.
 
-### 0.1 Deviations from intent (as of 2026-09-14, after a full code-review + a crash-path hardening pass)
+### 0.1 Deviations from intent (as of v1.0.0)
 
 | Area | Intended | As built | Status |
 |---|---|---|---|
@@ -35,7 +35,7 @@ and it is **only** read-only.
 | Read-only enforcement | naming rule + annotations | plus a static audit (`_audit.find_non_get_http_calls`) run in the CI lint and a unit test: no non-GET HTTP call outside a one-entry allowlist | **done** |
 | Daemon safety | bounded resources, a timeout on every call | `TTLCache` bounded + self-sweeping; systemd commands wrapped in `asyncio.wait_for`; every HTTP response read with an 8 MiB cap | **done** |
 | Observability | logs on a 24/7 service | stdlib `logging` — startup/shutdown, every `UpstreamError` / tool `ToolError`, TLS-off and public-bind warnings; level from `[server].log_level` / `--log-level` | **done** (was: none) |
-| Public-repo privacy tooling | `check_privacy.sh` + `.githooks/pre-push` + `check-privacy.yml` + `.privacy-denylist` | present, byte-identical to the other public repos; active now that this is a standalone repo | **done** |
+| Public-repo privacy tooling | `check_privacy.sh` + `.githooks/pre-push` + `check-privacy.yml` + `.privacy-denylist` | present and active | **done** |
 
 ---
 
@@ -316,8 +316,7 @@ infrastructure detail appears anywhere in this repo.
 CI: `ruff check` + `ruff format --check` + `mypy --strict` + `pytest` +
 `scripts/check_no_write_tools.py`. `scripts/check_privacy.sh` +
 `.githooks/pre-push` + `.github/workflows/check-privacy.yml` are present and
-byte-identical to the other public repos; they become active when homelab-mcp
-is split into its own git repo (see §0.1).
+ship with the repo.
 
 ---
 
@@ -344,7 +343,7 @@ is split into its own git repo (see §0.1).
 2. **`allowed_origins` default** — empty (no browser MCP client expected); revisit
    if one appears.
 
-*Resolved 2026-08-31:* license → AGPL-3.0-or-later; MCP SDK → `mcp` 2.x
+*Resolved:* license → AGPL-3.0-or-later; MCP SDK → `mcp` 2.x
 (`MCPServer`); transports → all three shipped, user-selectable, and round-trip
 tested (in-memory + ASGI); all eight initial adapters built with all their tools
 (`netbox_ip_usage` added; `http_json` = named-endpoint only, simple dotted

@@ -38,10 +38,7 @@ The test to apply to any line you are about to write:
 
 ## Where the specific configuration goes instead
 
-Into a private deployment repository, which is not published. The real host
-list, real endpoint URLs, the read-only Proxmox token reference and the
-persona files live there. This repo is the generic engine; the deployment is
-private.
+Into a separate private deployment repository. Real host lists, endpoint URLs and credential references belong there. This repo is the generic engine.
 
 ## Checking
 
