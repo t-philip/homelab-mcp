@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "lxc/201",
+      "type": "lxc",
+      "vmid": 201,
+      "name": "test-web-01",
+      "node": "node-a",
+      "status": "running",
+      "cpu": 0.0150,
+      "maxcpu": 2,
+      "mem": 268435456,
+      "maxmem": 1073741824,
+      "maxdisk": 10737418240,
+      "uptime": 54321
+    },
+    {
+      "id": "qemu/301",
+      "type": "qemu",
+      "vmid": 301,
+      "name": "test-db-01",
+      "node": "node-b",
+      "status": "running",
+      "cpu": 0.2210,
+      "maxcpu": 4,
+      "mem": 6442450944,
+      "maxmem": 8589934592,
+      "maxdisk": 68719476736,
+      "uptime": 654321
+    },
+    {
+      "id": "qemu/302",
+      "type": "qemu",
+      "vmid": 302,
+      "name": "test-spare-01",
+      "node": "node-b",
+      "status": "stopped",
+      "cpu": 0,
+      "maxcpu": 2,
+      "mem": 0,
+      "maxmem": 4294967296,
+      "maxdisk": 34359738368,
+      "uptime": 0
+    }
+  ]
+}

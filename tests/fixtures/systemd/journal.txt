@@ -1,0 +1,3 @@
+1999-06-07T08:15:02+0000 node-a grafana-server[1234]: Test Data — starting up
+1999-06-07T08:15:03+0000 node-a grafana-server[1234]: Test Data — HTTP server listening
+1999-06-07T08:20:11+0000 node-a grafana-server[1234]: Test Data — user logged in

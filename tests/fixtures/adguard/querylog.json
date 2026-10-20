@@ -1,0 +1,23 @@
+{
+  "oldest": "1999-06-07T08:00:00Z",
+  "data": [
+    {
+      "time": "1999-06-07T08:15:03Z",
+      "client": "192.0.2.10",
+      "question": { "name": "test-cdn.example.invalid", "type": "A", "class": "IN" },
+      "reason": "NotFilteredNotFound",
+      "filtered": false,
+      "elapsedMs": "1.5",
+      "upstream": "https://192.0.2.53:443/dns-query"
+    },
+    {
+      "time": "1999-06-07T08:15:04Z",
+      "client": "192.0.2.11",
+      "question": { "name": "test-ads.example.invalid", "type": "A", "class": "IN" },
+      "reason": "FilteredBlackList",
+      "filtered": true,
+      "elapsedMs": "0.3",
+      "upstream": ""
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "buckets": [
+    {
+      "id": "0000000000000001",
+      "name": "test-metrics",
+      "orgID": "abc",
+      "retentionRules": [{ "type": "expire", "everySeconds": 2592000 }]
+    },
+    {
+      "id": "0000000000000002",
+      "name": "test-events",
+      "orgID": "abc",
+      "retentionRules": []
+    }
+  ]
+}

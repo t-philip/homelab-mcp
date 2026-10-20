@@ -1,0 +1,16 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 7,
+      "prefix": "192.0.2.0/24",
+      "status": { "value": "active", "label": "Active" },
+      "vlan": { "vid": 10, "name": "test-vlan-10", "display": "test-vlan-10" },
+      "role": { "name": "Test Role", "slug": "test-role" },
+      "site": { "name": "Test Site", "slug": "test-site" },
+      "description": "Test Data prefix"
+    }
+  ]
+}

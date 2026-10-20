@@ -1,0 +1,7 @@
+{
+  "version": "v0.107.0",
+  "running": true,
+  "protection_enabled": true,
+  "dns_addresses": ["192.0.2.53"],
+  "dhcp_available": false
+}

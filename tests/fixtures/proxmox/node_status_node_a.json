@@ -1,0 +1,10 @@
+{
+  "data": {
+    "cpu": 0.1234,
+    "loadavg": ["0.42", "0.55", "0.61"],
+    "uptime": 123456,
+    "kversion": "Linux 6.0.0-0-example #1 SMP PREEMPT_DYNAMIC",
+    "memory": { "used": 8589934592, "total": 34359738368, "free": 25769803776 },
+    "rootfs": { "used": 5368709120, "total": 107374182400, "avail": 102005473280 }
+  }
+}

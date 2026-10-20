@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "node": "node-a",
+      "status": "online",
+      "cpu": 0.1234,
+      "maxcpu": 8,
+      "mem": 8589934592,
+      "maxmem": 34359738368,
+      "uptime": 123456,
+      "level": ""
+    },
+    {
+      "node": "node-b",
+      "status": "online",
+      "cpu": 0.0421,
+      "maxcpu": 4,
+      "mem": 2147483648,
+      "maxmem": 8589934592,
+      "uptime": 98765,
+      "level": ""
+    }
+  ]
+}

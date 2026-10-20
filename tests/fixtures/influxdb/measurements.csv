@@ -1,0 +1,8 @@
+#datatype,string,long,string
+#group,false,false,true
+#default,_result,,
+,result,table,_value
+,,0,cpu
+,,0,mem
+,,0,net
+

@@ -1,0 +1,6 @@
+#group,false,false,true,true,false,false,true,true
+#datatype,string,long,dateTime:RFC3339,dateTime:RFC3339,dateTime:RFC3339,double,string,string
+#default,_result,,,,,,,
+,result,table,_start,_stop,_time,_value,_field,_measurement
+,,0,1999-06-07T00:00:00Z,1999-06-07T08:00:00Z,1999-06-07T07:59:00Z,0.42,usage,cpu
+
